@@ -8,7 +8,8 @@
   "rules": {
     "arrow-parens": "off",
     "indent": ["warn", 4],
-    "require-jsdoc": "off"
+    "require-jsdoc": "off",
+    "max-len": ["warn", 120]
   },
   "extends": ["eslint:recommended", "google"]
 }

@@ -3,11 +3,12 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const babelPluginProposalClassProperties = require('@babel/plugin-proposal-class-properties');
 
 const isProd = process.env.NODE_ENV === 'production';
 const isDev = !isProd;
 
-const filename = ext => isProd ? `bundle.[hash].${ext}` : `bundle.${ext}`;
+const filename = ext => isProd ? `bundle.[contenthash].${ext}` : `bundle.${ext}`;
 
 module.exports = {
     context: path.resolve(__dirname, 'src'),
@@ -46,7 +47,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.c[ac]ss$/i,
+                test: /\.scss$/i,
                 use: [{
                     loader: MiniCssExtractPlugin.loader,
                     options: {
@@ -69,6 +70,7 @@ function getJsLoaders() {
         loader: 'babel-loader',
         options: {
             presets: ['@babel/preset-env'],
+            plugins: [babelPluginProposalClassProperties],
         }}];
 
     if (isDev) {

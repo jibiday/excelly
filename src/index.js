@@ -1,7 +1,6 @@
-console.log('huray');
+import {Excelly} from './core/Excelly';
+import {Header} from './components/header/Header';
+import '@/styles/style.scss';
 
-async function hello() {
-    return await Promise.resolve('ssuka');
-}
-
-hello().then(console.log);
+const excelly = new Excelly();
+excelly.bootstrap([Header]);
