@@ -10,4 +10,12 @@ export class ExcellyComponent extends DomListener {
     toHtml() {
         return '';
     }
+
+    init() {
+        this.addListeners();
+    }
+
+    destroy() {
+        this.removeListeners();
+    }
 }

@@ -8,6 +8,7 @@ export class Excelly {
         components.forEach(Component => {
             const el = document.createElement('div');
             const comp = new Component(el);
+            comp.init();
             el.className = comp.className;
             el.innerHTML = comp.toHtml();
             root.insertAdjacentElement('beforeend', el);

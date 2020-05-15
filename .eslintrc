@@ -9,6 +9,9 @@
     "arrow-parens": "off",
     "indent": ["warn", 4],
     "require-jsdoc": "off",
+    "no-trailing-spaces": "off",
+    "semi": "off",
+    "linebreak-style": "off",
     "max-len": ["warn", 120]
   },
   "extends": ["eslint:recommended", "google"]

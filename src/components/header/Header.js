@@ -1,13 +1,13 @@
-import {ExcellyComponent} from '../../core/ExcellyComponent';
+import {ExcellyComponent} from '@core/ExcellyComponent';
 
 export class Header extends ExcellyComponent {
     className = 'xcHeader';
 
     constructor(root) {
-        super(root, {listeners: ['input']});
+        super(root, {listeners: []});
     }
 
     toHtml() {
-        return `<h1>Hedor</h1>`;
+        return `<div></div>`;
     }
 }
