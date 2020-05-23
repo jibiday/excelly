@@ -10,6 +10,7 @@ export class DomListener {
             if (!this[fnName]) {
                 throw new Error(`Listener for ${listener} is not provided in component ${this.constructor.name}`);
             }
+            this[fnName] = this[fnName].bind(this)
             this.root.addEventListener(listener, this[fnName]);
         });
     }

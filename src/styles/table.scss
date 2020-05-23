@@ -1,0 +1,99 @@
+@import "variables";
+@import "mixins";
+
+.xcTable {
+  overflow-x: auto;
+
+  .xcRow {
+    display: flex;
+
+    :nth-child(2) {
+      margin-left: $first-column-width;
+    }
+
+    .xcCell {
+      min-width: $cell-width;
+      height: $cell-height;
+      border-right: 1px solid $border-color;
+      border-bottom: 1px solid $border-color;
+      border-left: 1px solid transparent;
+      border-top: 1px solid transparent;
+      outline: none;
+
+      &:hover {
+        border: 1px solid $primary;
+        border-radius: $border-radius;
+      }
+
+      &:focus {
+        border: 1px solid $primary-darker;
+        border-radius: $border-radius;
+      }
+    }
+
+    .xcAlphabetCell {
+      position: relative;
+      min-width: $cell-width;
+      height: $cell-height;
+      border-right: 1px solid $border-color;
+      border-bottom: 1px solid $border-color;
+      border-left: 1px solid transparent;
+      border-top: 1px solid transparent;
+      outline: none;
+      background-color: $header-cell-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+    }
+
+    .xcNumberCell {
+      height: $cell-height;
+      border-right: 1px solid $border-color;
+      border-bottom: 1px solid $border-color;
+      border-left: 1px solid transparent;
+      border-top: 1px solid transparent;
+      outline: none;
+      position: fixed;
+      min-width: $first-column-width;
+      background-color: $header-cell-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+    }
+  }
+}
+
+.xc-column-resize {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom left, $primary, transparent);
+  opacity: 0;
+  transition: opacity .3s;
+  z-index: 1000;
+
+  &:hover {
+    opacity: 1!important;
+    cursor: col-resize;
+  }
+}
+
+.xc-row-resize {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background-color: $primary;
+  opacity: 0;
+  transition: .3s;
+
+  &:hover {
+    opacity: 1;
+    cursor: row-resize;
+  }
+}

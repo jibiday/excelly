@@ -3,4 +3,8 @@
 .xcToolbar {
   border-bottom: 1px solid  $border-color;
   height: $header-height;
+
+  &__container {
+    display: flex;
+  }
 }

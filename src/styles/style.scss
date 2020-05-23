@@ -1,8 +1,14 @@
 @import "header";
 @import "toolbar";
 @import "formula";
+@import "table";
+
+:root {
+  --cell-height: 24px;
+}
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
