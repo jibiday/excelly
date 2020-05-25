@@ -14,6 +14,12 @@ export class Table extends ExcellyComponent {
     toHtml() {
         return renderTable(this.INIT_COL_NUMBER);
     }
+
+    init() {
+        super.init();
+        const firstCell = document.querySelector('[data-id="0:0"]');
+        this.selector.select(firstCell)
+    }
     
     onMousedown(event) {
         const resizer = event.target;

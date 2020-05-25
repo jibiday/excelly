@@ -45,5 +45,5 @@ function renderNumberHeaderCell(index) {
 }
 
 function renderCell(col, row) {
-    return `<div class="xcCell" data-col="${col}" data-id="${col}:${row}" contenteditable></div>`
+    return `<div class="xcCell" data-col="${col}" data-id="${col}:${row - 1}" contenteditable></div>`
 }
