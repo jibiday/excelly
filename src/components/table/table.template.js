@@ -26,13 +26,13 @@ function renderAlphabetCell(index) {
             </div>`
 }
 
-function renderRow(index) {
+function renderRow(rowIndex) {
     return `<div class="xcRow">` +
-            renderNumberHeaderCell(index) +
-            (index === 0 ? renderAlphabetHeaderCells() :
+            renderNumberHeaderCell(rowIndex) +
+            (rowIndex === 0 ? renderAlphabetHeaderCells() :
                 new Array(CHAR.Z - CHAR.A)
                     .fill('')
-                    .map((_, i) => renderCell(i))
+                    .map((_, colIndex) => renderCell(colIndex, rowIndex))
                     .join(''))+
             `</div>`
 }
@@ -44,6 +44,6 @@ function renderNumberHeaderCell(index) {
             </div>`
 }
 
-function renderCell(index) {
-    return `<div class="xcCell" data-col="${index}" contenteditable></div>`
+function renderCell(col, row) {
+    return `<div class="xcCell" data-col="${col}" data-id="${col}:${row}" contenteditable></div>`
 }

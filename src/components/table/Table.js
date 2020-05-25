@@ -1,9 +1,11 @@
 import {ExcellyComponent} from '@core/ExcellyComponent';
 import {renderTable} from '@/components/table/table.template';
+import {TableSelector} from "@/components/table/table.selector";
 
 export class Table extends ExcellyComponent {
     className = 'xcTable'
     INIT_COL_NUMBER = 15;
+    selector = new TableSelector();
 
     constructor(root) {
         super(root, {listeners: ['mousedown']});
@@ -46,6 +48,12 @@ export class Table extends ExcellyComponent {
                 }
                 document.addEventListener('mousemove', mouseMoveHandler)
                 document.addEventListener('mouseup', mouseUpHandler)
+            }
+        } else {
+            if (event.shiftKey) {
+                this.selector.selectGroup(event.target)
+            } else {
+                this.selector.select(event.target);
             }
         }
     }
