@@ -59,7 +59,13 @@ export class Table extends ExcellyComponent {
             if (event.shiftKey) {
                 this.selector.selectGroup(event.target)
             } else {
-                this.selector.select(event.target);
+                document.addEventListener('mouseup', (muEvent) => {
+                    if (event.target === muEvent.target) {
+                        this.selector.select(event.target);
+                    } else {
+                        this.selector.selectGroup(muEvent.target, event.target);
+                    }
+                })
             }
         }
     }

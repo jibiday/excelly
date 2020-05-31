@@ -7,7 +7,10 @@ export class TableSelector {
         this.markSelected(element)
     }
 
-    selectGroup(element) {
+    selectGroup(element, startElement) {
+        if (startElement) {
+            this.current = startElement;
+        }
         this.clear();
         let matrix = this.getMatrixIds(element);
         matrix.forEach(cellId => {
