@@ -3,8 +3,8 @@ import {ExcellyComponent} from '@core/ExcellyComponent';
 export class Toolbar extends ExcellyComponent {
     className = 'xcToolbar'
 
-    constructor(root) {
-        super(root, {listeners: []});
+    constructor(root, options) {
+        super(root, {listeners: [], ...options});
     }
 
     toHtml() {

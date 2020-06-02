@@ -7,8 +7,26 @@ export class Table extends ExcellyComponent {
     INIT_COL_NUMBER = 15;
     selector = new TableSelector();
 
-    constructor(root) {
-        super(root, {listeners: ['mousedown']});
+    constructor(root, options) {
+        super(root, {listeners: ['mousedown'], ...options});
+        this.on('formula:input', text => {
+            this.setTextToCell(text)
+        })
+    }
+
+    setTextToCell(text) {
+        this.selector.current.textContent = text;
+        this.selector.current.focus();
+        this.setCaretToEndOfCell(this.selector.current)
+    }
+
+    setCaretToEndOfCell(element) {
+        const range = document.createRange();
+        range.selectNodeContents(element);
+        range.collapse(false);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
     }
 
     toHtml() {
@@ -55,15 +73,17 @@ export class Table extends ExcellyComponent {
                 document.addEventListener('mousemove', mouseMoveHandler)
                 document.addEventListener('mouseup', mouseUpHandler)
             }
-        } else {
+        } else if (event.target.dataset.id) {
             if (event.shiftKey) {
                 this.selector.selectGroup(event.target)
             } else {
                 document.addEventListener('mouseup', (muEvent) => {
-                    if (event.target === muEvent.target) {
-                        this.selector.select(event.target);
-                    } else {
-                        this.selector.selectGroup(muEvent.target, event.target);
+                    if (muEvent.target.dataset.id) {
+                        if (event.target === muEvent.target) {
+                            this.selector.select(event.target);
+                        } else {
+                            this.selector.selectGroup(muEvent.target, event.target);
+                        }
                     }
                 })
             }

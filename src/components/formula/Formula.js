@@ -3,8 +3,8 @@ import {ExcellyComponent} from '@core/ExcellyComponent';
 export class Formula extends ExcellyComponent {
     className = 'xcFormula';
 
-    constructor(root) {
-        super(root, {listeners: ['input']});
+    constructor(root, options) {
+        super(root, {listeners: ['keypress'], ...options});
     }
 
     toHtml() {
@@ -16,7 +16,10 @@ export class Formula extends ExcellyComponent {
 `;
     }
 
-    onInput(event) {
-        console.log(event.target.textContent);
+    onKeypress(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            this.emit('formula:input', event.target.textContent.trim())
+        }
     }
 }
